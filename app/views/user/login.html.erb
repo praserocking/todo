@@ -1,4 +1,4 @@
-
+<% provide(:page_name,"Login") %>
 <div class="jumbotron" id="login_form">
 	<h2>Login here...!</h2>
 	<form>
@@ -10,7 +10,8 @@
 			<label>Password</label>
 			<input type="password" class="form-control" placeholder="password...">
 		</div>
-		<input type="submit" value="Login" class="btn btn-success">
+		<input type="submit" value="Login" class="btn btn-success"><br/>
+		Dont have an account? <%= link_to "Signup now!" ,signup_path %>
 	</form>
 </div>
 <div id="banner">

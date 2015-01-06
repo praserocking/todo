@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Todo</title>
+  <title><%= yield(provide_title(:page_name)) %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -10,12 +10,12 @@
 <header >
 	<nav id="header" class="navbar navbar-default navbar-fixed-top">
   		<div class="container">
-  			<a href="#" class="navbar-brand"> Todo App </a>
+  			<%= link_to "TODO", root_path, :class=>"navbar-brand" %>
     		<ul class="nav navbar-nav navbar-right">
-    			<li><a class="navbar-link" href="#">Home</a></li>
-    			<li><a class="navbar-link" href="#">About</a></li>
-    			<li><a class="navbar-link" href="#">Login</a></li>
-    			<li><a class="navbar-link" href="#">Signup</a></li>
+          <li><%= link_to "Home", home_path, :class=>"navbar-link" %></li>
+          <li><%= link_to "About", home_path, :class=>"navbar-link" %></li>
+          <li><%= link_to "Login", login_path, :class=>"navbar-link" %></li>
+          <li><%= link_to "Signup", signup_path, :class=>"navbar-link" %></li>
     		</ul>
   		</div>
 	</nav>
