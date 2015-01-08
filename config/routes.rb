@@ -1,17 +1,20 @@
 Rails.application.routes.draw do
 
+  root "user#login"
+  
   get '/signup' => "user#signup"
 
   get '/login' => "user#login"
 
-
   get '/home' => "user#login"
-
-  root "user#login"
 
   get 'task/home' => 'task#home'
 
   get 'task/new' => 'task#new'
+
+  post '/users' => 'user#create'
+
+  post '/login' => 'user#authuser'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

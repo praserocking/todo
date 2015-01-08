@@ -25,8 +25,6 @@ body{
   padding-bottom:25px;
   padding-left:25px;
   border-top: 1px solid #90c695;
-  background-color:#90c695;
-  box-shadow: 0px 3px 42px 4px rgba(33,33,33,1);
 }
 
 footer small {
@@ -51,4 +49,21 @@ footer small {
 .list_task{
 	background-color: #87d37c;
 
+}
+
+$gray-medium-light: #eaeaea;
+
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
 }

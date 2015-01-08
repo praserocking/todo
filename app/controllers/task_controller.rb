@@ -1,7 +1,7 @@
 class TaskController < ApplicationController
   def new
 	temp=task_params
-	temp[:user_id]=1
+	temp[:user_id]=session[:userid]
 	temp[:status]="undone"
 	@task=Task.new(temp)
 
@@ -15,7 +15,7 @@ class TaskController < ApplicationController
 
 
   def home
-  	@task_array=Task.all
+  	@task_array=Task.where("user_id=?",session[:userid])
   end
 
 

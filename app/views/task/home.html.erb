@@ -1,57 +1,58 @@
-<div class="container">
+<% if !session[:userid].nil? %>
+	<div class="container">
 
-	<div class="add_task">
-		<div class="row" >
-			<div class="col-md-6 col-md-offset-3">
-				<form class="form-inline" role="form">
-						<%= form_for task_home_path url: task_new_path do |f| %>
- 							New Task <%= f.text_field :new_todo ,class: 'form-control' %>
- 							&nbsp; <%= f.submit "Add to Task list" ,class: 'btn btn-primary' %>
- 						<% end %>
- 				</form>
- 			</div>
+		<div class="add_task">
+			<div class="row" >
+				<div class="col-md-6 col-md-offset-3">
+					<form class="form-inline" role="form">
+							<%= form_for task_home_path url: task_new_path do |f| %>
+	 							New Task <%= f.text_field :new_todo ,class: 'form-control' %>
+	 							&nbsp; <%= f.submit "Add to Task list" ,class: 'btn btn-primary' %>
+	 						<% end %>
+	 				</form>
+	 			</div>
+			</div>
 		</div>
-	</div>
-	<br /><br />
+		<br /><br />
 
-	<div class="jumbotron list_task">
-			<table class="table table-hover">
-			<tr>
-				<td> <strong>  Task To Complete</strong> </td>
-				<td> <strong> Status </strong></td>
-				<td></td>
-			</tr>
-
-			
-				<% @task_array.each do |t| %>
+		<div class="jumbotron list_task">
+				<table class="table">
 				<tr>
-					<td> <%= t.description %> </td>
-					
-					<% if t.status=="done" %>
-					<td><select>
-						<option> Done</option>
-						<option> Not Done</option>
-							</select></td>
+					<td> <strong>  Task To Complete</strong> </td>
+					<td> <strong> Status </strong></td>
+					<td></td>
+				</tr>
+					<% if !@task_array.nil? %>
+						<% @task_array.each do |t| %>
+						<tr>
+							<td> <%= t.description %> </td>
+							
+							<% if t.status=="done" %>
+							<td><select>
+								<option> Done</option>
+								<option> Not Done</option>
+									</select></td>
 
-					<% else %>
-					<td><select>
-					<option> Not Done</option>
-					<option> Done</option>
-						</select></td>
+							<% else %>
+							<td><select>
+							<option> Not Done</option>
+							<option> Done</option>
+								</select></td>
 
+							<% end %>
+						<td> <button class="btn btn-danger"> Delete </td>
+						</tr>
+						<% end %>
 					<% end %>
+			</table>
+		</div>
 
-					<td> <button class="btn btn-danger"> Delete </td>
-					</tr>
-				<% end %>
-			
-		</table>
+		<%= flash[:success] if flash[:success]!=nil %>
+		<%= flash[:danger] if flash[:danger]!=nil %>
+
 	</div>
 
-	<%= flash[:success] if flash[:success]!=nil %>
-	<%= flash[:danger] if flash[:danger]!=nil %>
-
-</div>
+<% end %>
 
 
 
