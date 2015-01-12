@@ -16,6 +16,12 @@ Rails.application.routes.draw do
 
   post '/login' => 'user#authuser'
 
+  post 'task/home' => 'task#new'
+
+  post 'task/delete' => 'task#del_task'
+
+  post 'task/logout' => 'task#logout'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

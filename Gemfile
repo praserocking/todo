@@ -24,9 +24,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'lhm'
 
-
 gem 'bootstrap-sass'
-
 
 gem 'bcrypt'
 

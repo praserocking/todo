@@ -2,27 +2,42 @@
 	<div class="container">
 
 		<div class="add_task">
+			<div class="row">
+				<div class="col-md-3">
+					<h3>Welcome, <%= @user.username %> </h3>
+				</div>
+			</div>
 			<div class="row" >
-				<div class="col-md-6 col-md-offset-3">
-					<form class="form-inline" role="form">
-							<%= form_for task_home_path url: task_new_path do |f| %>
-	 							New Task <%= f.text_field :new_todo ,class: 'form-control' %>
-	 							&nbsp; <%= f.submit "Add to Task list" ,class: 'btn btn-primary' %>
-	 						<% end %>
-	 				</form>
+				<div class="col-md-5 col-md-offset-3">
+					<%= form_for :task, html:{class:"form form-inline"} do |f| %>
+	 					New Task <%= f.text_field :description ,class: 'form-control' %>
+	 					&nbsp; <%= f.submit "Add to Task list" ,class: 'btn btn-primary' %>
+	 				<% end %>
+	 			</div>
+	 			<div class="col-md-1 col-md-offset-2">
+	 			<%= button_to "Logout" ,{action:"logout"}, class:"btn btn-danger"  %>
 	 			</div>
 			</div>
 		</div>
 		<br /><br />
-
+		<% if !flash[:success].nil? %>
+			<div class="alert alert-success">
+				<%= flash[:success] %>
+			</div>
+		<% end %>
+		<% if !flash[:danger].nil? %>
+			<div class="alert alert-danger">
+				<%= flash[:danger] %>
+			</div>
+		<% end %>
 		<div class="jumbotron list_task">
+		<% if !@task_array.empty? %>
 				<table class="table">
 				<tr>
 					<td> <strong>  Task To Complete</strong> </td>
 					<td> <strong> Status </strong></td>
 					<td></td>
 				</tr>
-					<% if !@task_array.nil? %>
 						<% @task_array.each do |t| %>
 						<tr>
 							<td> <%= t.description %> </td>
@@ -40,16 +55,16 @@
 								</select></td>
 
 							<% end %>
-						<td> <button class="btn btn-danger"> Delete </td>
+						<td> <%= button_to "Delete" ,{action:"del_task",id:t.id}, class: "btn btn-danger"  %></td>
 						</tr>
 						<% end %>
+					<% else %>
+						<center>
+						<h2> No tasks for u!<br/><small>May be create one?</small></h2>
+						</center>
 					<% end %>
 			</table>
 		</div>
-
-		<%= flash[:success] if flash[:success]!=nil %>
-		<%= flash[:danger] if flash[:danger]!=nil %>
-
 	</div>
 
 <% end %>
